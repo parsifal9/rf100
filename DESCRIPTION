@@ -3,17 +3,16 @@ Title: Implements Random Forests in Minimal R code
 Version: 0.0.0.9000
 Authors@R: c(
     person(given = "Andre",
-           family = "Last",
-           role = c( "cre"),
-           email = "****@***"),
+           family = "Bleier",
+           role = c( "cre")),
    person(given = "Rob",		
            family = "Dunne",	   
            role = c("aut"),
            email = "rob.dunne@csiro.au")
 	   )
 Author: Rob Dunne [aut],
-        Andre Last [cre, ctb]
-Maintainer: Joe Developer <Joe.Developer@some.domain.net>	
+        Andre Bleier [cre, ctb]
+Maintainer: Rob Dunne <rob.dunne@csiro.au>	
 Description: This package implements Random Forests directly in R. It was originally written by Andre. The current package has a
               few bug fixes (and a few extensions?).
 License: use_mit_license()

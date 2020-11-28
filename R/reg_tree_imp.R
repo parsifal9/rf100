@@ -41,8 +41,6 @@ sse_var <- function(x, y) {
 #'# devtools::install_github('andrebleier/Xy')
 #'library(Xy)
 #'
-#'# source the fitting function
-#'source("reg_tree_imp.R")
 #'
 #'# simulate data
 #'sim <- Xy(n = 2500, # 2500 observations
@@ -62,8 +60,6 @@ sse_var <- function(x, y) {
 #'# get the formula
 #'model_df <- sim$data
 #'
-#'# source function
-#'source("algorithms/reg_tree_imp.R")
 #'
 #'# fit
 #'mod <- reg_tree_imp(formula = eq, data = model_df, minsize = 100)

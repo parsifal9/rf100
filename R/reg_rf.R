@@ -80,8 +80,6 @@
   
 reg_rf <- function(formula, n_trees, feature_frac, data) {
   
-  # source the regression tree function
-  source("algorithms/reg_tree_imp.R")
   
   # load plyr
   require(plyr)

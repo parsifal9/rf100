@@ -57,8 +57,6 @@ sse_var <- function(x, y) {
 #'# get the formula
 #'model_df <- sim$data
 #'
-#'# source function
-#'source("algorithms/reg_tree.R")
 #'
 #'# fit
 #'mod <- reg_tree(formula = eq, data = model_df, minsize = 400)

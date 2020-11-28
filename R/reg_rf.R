@@ -94,9 +94,9 @@ reg_rf <- function(formula, n_trees, feature_frac, data) {
     
     # bag the data
     # - randomly sample the data with replacement (duplicate are possible)
-    train <-
-      data[sample(1:nrow(data), size = nrow(data), replace = TRUE),]
-    
+    temp1 <- sample(1:nrow(data), size = nrow(data), replace = TRUE)
+    train <- data[temp1,]
+
     # randomly sample features
     # - only fit the regression tree with feature_frac * 100 % of the features
     features_sample <- sample(features,
@@ -112,7 +112,22 @@ reg_rf <- function(formula, n_trees, feature_frac, data) {
     tree <- reg_tree_imp(formula = formula_new,
                          data = train,
                          minsize = ceiling(nrow(train) * 0.1))
+
+    #the fitted values in tree$fit is built by averaging  over leafs. It can have NA where values were missing from the boostrapped sample.
+    # If these msiing values were at the end of the data set then the returned tree$fit will have the wrong length
+    if( length(tree$fit) != dim(train)[[1]]){
+        t1<- dim(train)[[1]] -length(tree$fit)
+        tree$fit <-c(tree$fit,rep(NA,t1))
+    }
     
+    aa<-data.frame(tree$fit,temp1) %>%
+        dplyr::group_by(temp1)%>%
+        dplyr::summarize(Mean = mean(tree.fit, na.rm=TRUE),.groups = 'drop')
+    aa<-as.matrix(aa)
+    tt<-rep(NA,length(temp1))
+    tt[aa[,1]]<-aa[,2]
+    tree$fit <- tt
+      
     # save the fit and the importance
     return(list(tree$fit, tree$importance))
   }
